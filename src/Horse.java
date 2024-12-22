@@ -30,7 +30,7 @@ public class Horse extends ChessPiece {
             return false;
         }
 
-        return (
+        if (
                 ((line + 2) == toLine && (column + 1) == toColumn) ||
                         ((line + 1) == toLine && (column + 2) == toColumn) ||
                         ((line - 1) == toLine && (column + 2) == toColumn) ||
@@ -39,7 +39,14 @@ public class Horse extends ChessPiece {
                         ((line - 1) == toLine && (column - 2) == toColumn) ||
                         ((line + 1) == toLine && (column - 2) == toColumn) ||
                         ((line + 2) == toLine && (column - 1) == toColumn)
-        );
+        ) {
+            if ((chessBoard.board[toLine][toColumn] == null)) {
+                return true;
+            } else if (chessBoard.board[toLine][toColumn] != null && !chessBoard.board[toLine][toColumn].color.equals(color)) {
+                System.out.println("Фигура противника '" + chessBoard.board[toLine][toColumn].getSymbol() + "' успешно сожрана!");
+                return true;
+            } else return false;
+        } else return false;
     }
 
     @Override
