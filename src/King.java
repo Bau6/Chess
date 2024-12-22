@@ -20,10 +20,17 @@ public class King extends ChessPiece {
             return false;
         }
 
-        return (((Math.abs(toLine - line)) == (Math.abs(toColumn - column))
+        if (((Math.abs(toLine - line)) == (Math.abs(toColumn - column))
                 || (column == toColumn || line == toLine))
                 && ((Math.abs(toLine - line)) == 1
-                || (Math.abs(toColumn - column)) == 1));
+                || (Math.abs(toColumn - column)) == 1)) {
+            if ((chessBoard.board[toLine][toColumn] == null)) {
+                return true;
+            } else if (chessBoard.board[toLine][toColumn] != null && !chessBoard.board[toLine][toColumn].color.equals(color)) {
+                System.out.println("Фигура противника '" + chessBoard.board[toLine][toColumn].getSymbol() + "' успешно сожрана!");
+                return true;
+            } else return false;
+        } else return false;
     }
 
     @Override
